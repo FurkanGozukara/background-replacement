@@ -54,7 +54,7 @@ def run_pipeline(image, positive_prompt, negative_prompt, seed, num_inference_st
         generator = torch.manual_seed(seed)
 
     all_generated_images = []
-    for _ in range(num_images_to_generate):
+    for count in range(num_images_to_generate):
         images = pipe(
         prompt=positive_prompt,
         negative_prompt=negative_prompt,
@@ -68,8 +68,11 @@ def run_pipeline(image, positive_prompt, negative_prompt, seed, num_inference_st
 
         all_generated_images.extend(images)  # Add the generated images to the list
 
+        # Print progress
+        print(f"Generated {count + 1} of {num_images_to_generate}")
+
     # Saving images to outputs folder
 
-
     return all_generated_images
+
 
