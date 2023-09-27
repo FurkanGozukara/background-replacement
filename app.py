@@ -9,29 +9,6 @@ developer_mode = os.getenv('DEV_MODE', False)
 DEFAULT_POSITIVE_PROMPT = "on the pavement, poolside, idyllic infinity pool, Hawaiian hilltops, commercial product photography"
 DEFAULT_NEGATIVE_PROMPT = ""
 
-EXAMPLES = [
-    [
-        "examples/black-sneakers-with-white-sole.jpg",
-        "on the grass in Central Park, gorgeous summer day with Bethesda fountain in the background, commercial footwear product photography",
-        "people, litter, trash, crowds, messy",
-    ],
-    [
-        "examples/DIY-beard-balm.jpg",
-        "on a mossy rock, white wood anemone blossoms, Loch Ken, Scotland",
-        "purple, wrong proportions",
-    ],
-    [
-        "examples/dj-making-music-on-mixer.jpg",
-        "on the turntables with a packed dance floor, epic midnight edm party in Miami Beach, colorful nightlife photography",
-        "disfigured, dismembered, mangled, marred",
-    ],
-    [
-        "examples/jean-shorts-woman.jpg",
-        "on the beach in Malibu, a five-star beachfront hotel in the background, stark late afternoon light near the dunes, lifestyle photography",
-        "blurry background, ripples, soft focus, bokeh",
-    ],
-]
-
 INTRO = """
 # Modified to be working on Windows by Furkan Gözükara - SECourses
 ## https://www.youtube.com/SECourses
@@ -44,7 +21,7 @@ _from your friends at_ 🛍️[Shopify](https://www.shopify.com/)
 
 Building an online store requires lots of high quality product and marketing images. This is an early demo of a background replacement tool built with Stable Diffusion XL that makes it easy to use your existing product images to make something new. Please be patient during peak demand. 😅
 
-To use it, upload your product photo (.jpg or .png), then describe the background you’d like to see in place of the original. For best results follow the general pattern in the examples below:
+To use it, upload your product photo (.jpg or .png), then describe the background you’d like to see in place of the original.
 1. ❌ _Do not_ describe your product in the prompt (ex: black sneakers)
 2. ✅ Do describe the "grounding" for your product (ex: placed on a table)
 3. ✅ Do describe the scene you want (ex: in a greek cottage)
@@ -204,11 +181,6 @@ with gr.Blocks(css=custom_css) as iface:
     else:
         generated = gr.Gallery(visible=False)
         pre_processing = gr.Gallery(visible=False)
-
-    gr.Examples(
-        examples=EXAMPLES,
-        inputs=[image_upload, positive_prompt, negative_prompt],
-    )
 
     gr.Markdown(MORE_INFO)
 
