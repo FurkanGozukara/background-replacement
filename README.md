@@ -1,3 +1,9 @@
+# Modified to be working on Windows by Furkan Gözükara - SECourses
+## https://www.youtube.com/SECourses
+## https://www.patreon.com/SECourses
+## https://www.twitter.com/GozukaraFurkan
+## SDXL Background Replacement for Product Images
+
 ---
 title: SDXL Background Replacement for Product Images
 emoji: 🖼️
