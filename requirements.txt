@@ -1,4 +1,4 @@
---index-url https://download.pytorch.org/whl/cu118
+--extra-index-url https://download.pytorch.org/whl/cu118
 gradio
 opencv-python
 diffusers[torch]
