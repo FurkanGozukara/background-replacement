@@ -1,4 +1,5 @@
 import torch
+import os
 from diffusers import StableDiffusionXLControlNetPipeline, ControlNetModel, AutoencoderKL, UniPCMultistepScheduler
 
 pipe = None
@@ -41,7 +42,10 @@ def init():
     pipe.enable_xformers_memory_efficient_attention()
 
 
-def run_pipeline(image, positive_prompt, negative_prompt, seed):
+import os
+import datetime
+
+def run_pipeline(image, positive_prompt, negative_prompt, seed, num_inference_steps=30, num_images_per_prompt=4, controlnet_conditioning_scale=0.65, guidance_scale=10.0, num_images_to_generate=1):
     if seed == -1:
         print("Using random seed")
         generator = None
@@ -49,15 +53,23 @@ def run_pipeline(image, positive_prompt, negative_prompt, seed):
         print("Using seed:", seed)
         generator = torch.manual_seed(seed)
 
-    images = pipe(
+    all_generated_images = []
+    for _ in range(num_images_to_generate):
+        images = pipe(
         prompt=positive_prompt,
         negative_prompt=negative_prompt,
-        num_inference_steps=30,
-        num_images_per_prompt=4,
-        controlnet_conditioning_scale=0.65,
-        guidance_scale=10.0,
+        num_inference_steps=num_inference_steps,
+        num_images_per_prompt=num_images_per_prompt,
+        controlnet_conditioning_scale=controlnet_conditioning_scale,
+        guidance_scale=guidance_scale,
         generator=generator,
         image=image
-    ).images
+        ).images
 
-    return images
+        all_generated_images.extend(images)  # Add the generated images to the list
+
+    # Saving images to outputs folder
+
+
+    return all_generated_images
+

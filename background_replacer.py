@@ -1,4 +1,6 @@
 import warnings
+import os
+import datetime
 warnings.filterwarnings("ignore", category=FutureWarning)  # nopep8
 warnings.filterwarnings("ignore", category=UserWarning)  # nopep8
 import os
@@ -108,8 +110,13 @@ def replace_background(
     print("Final negative prompt:", final_negative_prompt)
 
     print("Generating...")
-
+    print(options.get('num_images_per_prompt'))
     generated_images = run_pipeline(
+        num_inference_steps=options.get('num_inference_steps'),
+        num_images_per_prompt=int(options.get('num_images_per_prompt')),
+        controlnet_conditioning_scale=options.get('controlnet_conditioning_scale'),
+        guidance_scale=options.get('guidance_scale'),
+        num_images_to_generate=options.get('num_images_to_generate'),
         positive_prompt=final_positive_prompt,
         negative_prompt=final_negative_prompt,
         image=[masked_depth_map],
@@ -129,7 +136,11 @@ def replace_background(
     ]
     pbar.update(1)
     pbar.close()
-
+    if not os.path.exists("outputs"):
+        os.makedirs("outputs")
+    for img in composited_images:
+        timestamp = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S-%f')
+        img.save(f"outputs/{timestamp}.png")
     print("Done!")
 
     if developer_mode:

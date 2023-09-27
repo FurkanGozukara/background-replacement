@@ -1,7 +1,5 @@
 import os
-
 import gradio as gr
-
 from background_replacer import replace_background
 
 developer_mode = os.getenv('DEV_MODE', True)
@@ -59,7 +57,6 @@ MORE_INFO = """
 - Shopify is on a mission to redefine commerce with AI. If you’re an AI or ML engineer looking to build the future of commerce, [join us](https://www.shopify.com/careers)!
 """
 
-
 def generate(
     image,
     positive_prompt,
@@ -68,6 +65,11 @@ def generate(
     depth_map_feather_threshold,
     depth_map_dilation_iterations,
     depth_map_blur_radius,
+	num_inference_steps,
+	num_images_per_prompt,
+	controlnet_conditioning_scale,
+	guidance_scale,
+	num_images_to_generate,
     progress=gr.Progress(track_tqdm=True)
 ):
     if image is None:
@@ -78,10 +80,14 @@ def generate(
         'depth_map_feather_threshold': depth_map_feather_threshold,
         'depth_map_dilation_iterations': depth_map_dilation_iterations,
         'depth_map_blur_radius': depth_map_blur_radius,
+		'num_inference_steps' : num_inference_steps,
+		'num_images_per_prompt' : num_images_per_prompt,
+		'controlnet_conditioning_scale' : controlnet_conditioning_scale,
+		'guidance_scale' : guidance_scale,
+		'num_images_to_generate' : num_images_to_generate,
     }
 
     return replace_background(image, positive_prompt, negative_prompt, options)
-
 
 custom_css = """
     #image-upload {
@@ -141,10 +147,16 @@ with gr.Blocks(css=custom_css) as iface:
                 )
             if developer_mode:
                 with gr.Tab('Options'):
+                    num_inference_steps = gr.Slider(precision=0,minimum=1, maximum=300,value=30, default=30,step=1, label="Num Inference Steps")
+                    num_images_per_prompt = gr.Slider(precision=0,minimum=1, maximum=100,value=1, default=1,step=1, label="Batch Size - Uses More VRAM")
+                    controlnet_conditioning_scale = gr.Slider(precision=0,minimum=0.1,value=0.65, maximum=2.0, step=0.01, default=0.65, label="ControlNet Conditioning Scale")
+                    guidance_scale = gr.Slider(precision=0,minimum=1.0, maximum=30.0,value=10.0, step=0.5, default=10.0, label="Guidance Scale")
+                    num_images_to_generate = gr.Slider(precision=0,minimum=1,value=1, maximum=10000, default=1,step=1, label="Number of Images to Generate")
+  
                     seed = gr.Number(
                         label="Seed",
                         precision=0,
-                        value=0,
+                        value=-1,
                         elem_id="seed",
                         visible=developer_mode
                     )
@@ -221,7 +233,13 @@ with gr.Blocks(css=custom_css) as iface:
             seed,
             depth_map_feather_threshold,
             depth_map_dilation_iterations,
-            depth_map_blur_radius
+    depth_map_blur_radius,
+	num_inference_steps,
+	num_images_per_prompt,
+	controlnet_conditioning_scale,
+	guidance_scale,
+	num_images_to_generate
+			
         ],
         outputs=[
             results,
