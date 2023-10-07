@@ -1,4 +1,5 @@
-# Auto installer : https://www.patreon.com/posts/auto-runpod-for-89919157 - use this until a tutorial
+# Auto installer for Windows : https://www.patreon.com/posts/auto-windows-for-89914747 - use this until a tutorial
+# Auto for RunPod installer : https://www.patreon.com/posts/auto-runpod-for-89919157 - use this until a tutorial
 # Modified to be working on Windows by Furkan Gözükara - SECourses
 ## https://www.youtube.com/SECourses
 ## https://www.patreon.com/SECourses
