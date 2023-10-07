@@ -1,3 +1,4 @@
+# Auto installer : https://www.patreon.com/posts/auto-runpod-for-89919157 - use this until a tutorial
 # Modified to be working on Windows by Furkan Gözükara - SECourses
 ## https://www.youtube.com/SECourses
 ## https://www.patreon.com/SECourses
