@@ -1,5 +1,5 @@
 --extra-index-url https://download.pytorch.org/whl/cu118
-gradio
+gradio==3.50.2
 opencv-python
 diffusers[torch]
 transformers
