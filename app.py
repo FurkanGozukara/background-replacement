@@ -32,15 +32,7 @@ EXAMPLES = [
 
 INTRO = """
 # Modified to be working on Windows by Furkan Gözükara - SECourses
-## https://www.youtube.com/SECourses
-## https://www.patreon.com/SECourses
-## https://www.twitter.com/GozukaraFurkan
-## SDXL Background Replacement for Product Images
-_from your friends at_ 🛍️[Shopify](https://www.shopify.com/)
-
-[![Duplicate this Space](https://huggingface.co/datasets/huggingface/badges/resolve/main/duplicate-this-space-md.svg)](https://huggingface.co/spaces/Shopify/background-replacement?duplicate=true)
-
-Building an online store requires lots of high quality product and marketing images. This is an early demo of a background replacement tool built with Stable Diffusion XL that makes it easy to use your existing product images to make something new. Please be patient during peak demand. 😅
+## https://www.youtube.com/SECourses - https://www.patreon.com/SECourses
 
 To use it, upload your product photo (.jpg or .png), then describe the background you’d like to see in place of the original. For best results follow the general pattern in the examples below:
 1. ❌ _Do not_ describe your product in the prompt (ex: black sneakers)
@@ -249,4 +241,4 @@ with gr.Blocks(css=custom_css) as iface:
         ],
     )
 
-iface.queue(api_open=False).launch(show_api=False)
+iface.queue(api_open=False).launch(show_api=False,inbrowser=True)
