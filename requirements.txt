@@ -1,8 +1,9 @@
 --extra-index-url https://download.pytorch.org/whl/cu118
 gradio==3.50.2
 opencv-python
-diffusers[torch]
-transformers
+diffusers==0.21.4
+torch==2.1.0
+transformers==4.34.1
 xformers
 accelerate
 safetensors
