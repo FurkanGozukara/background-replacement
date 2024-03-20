@@ -1,7 +1,10 @@
 import os
 import gradio as gr
 from background_replacer import replace_background
-
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("--share", action='store_true')
+args = parser.parse_args()
 developer_mode = os.getenv('DEV_MODE', True)
 
 DEFAULT_POSITIVE_PROMPT = "on the pavement, poolside, idyllic infinity pool, Hawaiian hilltops, commercial product photography"
@@ -241,4 +244,4 @@ with gr.Blocks(css=custom_css) as iface:
         ],
     )
 
-iface.queue(api_open=False).launch(show_api=False,inbrowser=True)
+iface.queue(api_open=False).launch(show_api=False,inbrowser=True,share=args.share)
