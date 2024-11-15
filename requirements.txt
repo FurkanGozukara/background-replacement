@@ -12,3 +12,5 @@ scikit-image
 realesrgan
 basicsr>=1.4.2
 scipy
+ipywidgets
+hf_transfer
