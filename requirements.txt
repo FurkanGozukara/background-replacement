@@ -1,4 +1,4 @@
-huggingface_hub
+huggingface_hub==0.21.0
 huggingface-hub==0.26.2
 bitsandbytes==0.43.0
 gradio==3.50.2
