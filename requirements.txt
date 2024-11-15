@@ -1,7 +1,7 @@
 bitsandbytes==0.43.0
 gradio==3.50.2
 opencv-python
-diffusers==0.21.4
+diffusers==0.31.0
 transformers==4.34.1
 accelerate
 safetensors
