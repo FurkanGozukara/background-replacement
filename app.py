@@ -34,8 +34,7 @@ EXAMPLES = [
 ]
 
 INTRO = """
-# Modified to be working on Windows by Furkan Gözükara - SECourses
-## https://www.youtube.com/SECourses - https://www.patreon.com/SECourses
+# Shopify Improved SECourses App V6 - https://www.patreon.com/posts/89914747
 
 To use it, upload your product photo (.jpg or .png), then describe the background you’d like to see in place of the original. For best results follow the general pattern in the examples below:
 1. ❌ _Do not_ describe your product in the prompt (ex: black sneakers)
